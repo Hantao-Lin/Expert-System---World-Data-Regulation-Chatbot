@@ -91,7 +91,7 @@ import numpy as np
 import ollama  # Ensure you have Ollama installed and running
 
 # Your Pinecone API key and environment
-api_key = "pcsk_4NhitL_FmaA5ZiASkUUhACyuxAY1YDXP2pYsh6PzbCJV29GBBZ3Hn5HxBwXpa3JFBoNy5z"
+api_key = "Your Pinecone API Key Here"
 environment = "us-east-1"
 
 # Initialize Pinecone using the new client interface.
