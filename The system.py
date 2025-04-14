@@ -88,16 +88,15 @@ import time
 import pinecone
 import pandas as pd
 import numpy as np
-import ollama  # Ensure you have Ollama installed and running
+import ollama  
 
-# Your Pinecone API key and environment
 api_key = "Your Pinecone API Key Here"
 environment = "us-east-1"
 
-# Initialize Pinecone using the new client interface.
+# Initialize Pinecone 
 pc = pinecone.Pinecone(api_key=api_key)
 
-# Set your index name and embedding dimension (1024 for multilingual-e5-large)
+# Set index name and embedding dimension
 index_name = "legal-index"
 desired_dimension = 1024
 
@@ -117,7 +116,7 @@ if index_name not in [idx.name for idx in pc.list_indexes().indexes]:
     # Allow a short delay for the index to be ready
     time.sleep(5)
 
-# Connect to the index using the capitalized "Index" method
+# Connect to the index 
 index = pc.Index(index_name)
 
 # ----------------------------
@@ -137,9 +136,8 @@ def summarize_document(text, model="llama3.1", max_length=1000):
     return summary[:max_length]
 
 # ----------------------------
-# Process your DataFrame and Prepare Metadata
+# Process DataFrame and Prepare Metadata
 # ----------------------------
-# Assume cleaned_df is already loaded.
 print("Original DataFrame shape:", cleaned_df.shape)
 cleaned_df.columns = cleaned_df.columns.str.replace(" ", "_")
 print("Modified columns:", cleaned_df.columns.tolist())
@@ -179,7 +177,7 @@ for i in range(0, len(documents), batch_inference_size):
         inputs=batch_texts,
         parameters={"input_type": "passage", "truncate": "END"}
     )
-    # The response is a list of embedding objects.
+    
     batch_embeddings = [item["values"] for item in embeddings_response]
     embedding_list.extend(batch_embeddings)
     
@@ -213,7 +211,7 @@ for batch_idx in range(total_batches):
     print(f"Upserted batch {batch_idx + 1}/{total_batches}")
 
 elapsed = time.time() - start_time
-print(f"✅ Successfully upserted {len(documents)} embeddings to Pinecone in {elapsed:.2f} seconds.")
+print(f"Successfully upserted {len(documents)} embeddings to Pinecone in {elapsed:.2f} seconds.")
 
 
 # # Expert System
