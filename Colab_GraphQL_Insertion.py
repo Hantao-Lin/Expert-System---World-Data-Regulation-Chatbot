@@ -23,13 +23,12 @@ print("DataFrame shape:", cleaned_df.shape)
 # Set up the Neo4j driver.
 uri = "neo4j+s://66f142db.databases.neo4j.io"  # Your Neo4j instance URI
 user = "neo4j"
-password = "QMSrMna3lB27p-KBYwiGNL6lhhC_TJ8sHIk8eZ9Hmc0"  # Replace with actual password
+password =   # Replace with actual password
 driver = GraphDatabase.driver(uri, auth=(user, password))
 
 def create_legal_provision(tx, country, section, text):
     """
-    Inserts unique nodes for Country, Section, and Text in Neo4j,
-    ensuring that each country-section combination has a unique provision.
+    Inserts unique nodes for Country, Section, and Text in Neo4j
     """
     section_id = f"{country}_{section}".replace(" ", "_")  # Unique Section ID
     text_id = f"{country}_{section}_Provision".replace(" ", "_")  # Unique Text ID
@@ -54,7 +53,7 @@ with driver.session() as session:
                 continue  # Skip empty values
             session.write_transaction(create_legal_provision, country, col, str(text))
 
-print("✅ Data structured and loaded into Neo4j.")
+print("Data structured and loaded into Neo4j.")
 
 # Define a test query to check for a few LegalProvision nodes.
 test_query = """
