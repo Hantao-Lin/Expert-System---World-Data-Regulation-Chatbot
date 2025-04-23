@@ -313,8 +313,8 @@ class InformationRetriever:
     def __init__(self, 
                  neo4j_uri="neo4j+s://66f142db.databases.neo4j.io", 
                  neo4j_user="neo4j", 
-                 neo4j_password="QMSrMna3lB27p-KBYwiGNL6lhhC_TJ8sHIk8eZ9Hmc0",
-                 pinecone_api_key="pcsk_4NhitL_FmaA5ZiASkUUhACyuxAY1YDXP2pYsh6PzbCJV29GBBZ3Hn5HxBwXpa3JFBoNy5z",
+                 neo4j_password="",
+                 pinecone_api_key="",
                  pinecone_environment="us-east-1",
                  pinecone_index_name="legal-index"):
         self.driver = GraphDatabase.driver(neo4j_uri, auth=(neo4j_user, neo4j_password))
